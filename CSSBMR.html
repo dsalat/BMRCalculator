@@ -1,0 +1,221 @@
+﻿<html>
+
+<head>
+
+    <!-- Dirshe Bootleg BMR  -->
+
+    <title>BMR Calculator</title>
+          
+
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
+<style type="text/css">
+
+.brmform1 {
+	max-width: 500px;
+	padding: 10px 20px;
+	background: #0FE6D1;
+	margin: 10px auto;
+	padding: 25px;
+	background: #0FE6D1;
+	border-radius: 10px;
+	font-family: 'Lato', sans-serif;
+}
+.brmform1 fieldset{
+	border: none;
+}
+.brmform1 legend {
+	font-size: 1.4em;
+	margin-bottom: 10px;
+}
+.brmform1 label {
+	display: block;
+	margin-bottom: 8px;
+}
+.brmform1 input[type="text"],
+.brmform1 input[type="number"],
+.brmform1 textarea,
+.brmform1 select {
+	font-family: 'Lato', sans-serif;
+	background: rgba(255,255,255,.1);
+	border: none;
+	border-radius: 4px;
+	font-size: 15px;
+	margin: 0;
+	outline: 0;
+	padding: 10px;
+	width: 100%;
+	box-sizing: border-box; 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box; 
+	background-color: #CED4D0;
+	color: #0E40E2;
+	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+	margin-bottom: 30px;
+}
+
+.brmform1 select{
+	-webkit-appearance: menulist-button;
+	height:45px;
+}
+.brmform1 .number {
+	background: #71FB08;
+	color: #101010;
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	font-size: 0.8em;
+	margin-right: 4px;
+	line-height: 30px;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+	border-radius: 20px 20px 20px 0px;
+}
+
+</style>
+
+</head>
+
+<body>
+<div class="brmform1">
+    <form action="#">
+        <legend><span class="number">1</span> Select your gender below</legend>
+        <input type="radio" id="gender" name="gender" value="masc" checked> Male<br>
+
+        <input type="radio" id="gender" name="gender" value="fem"> Female<br>
+        &nbsp
+        <legend><span class="number">2</span> Enter your age</legend>
+        
+        Age(years): <br>
+        &nbsp
+        <input type="number" id="age" value="20"><br>
+        
+        <legend><span class="number">3</span> Enter your height</legend>
+
+        Height(inches):<br>
+        &nbsp
+
+        <input type="number" id="height" value="180"><br>
+
+        <legend><span class="number">4</span> Enter your weight</legend>
+        
+        Weight(lbs):<br>
+        &nbsp
+        <input type="number" id="weight" value="80"><br>
+        
+      <button type="button" onclick="">
+
+        Result </button>
+
+    </form>
+    
+
+        
+        <legend><span class="number">5</span> Result</legend>
+
+    <p id="lblResult">BMR (Dirshe)</p>
+
+    <script>
+
+        var bmr;
+
+        //function to calculate The BMR
+
+        function BMRCalc() {
+
+            var age = document.getElementById("age").value;
+
+            var gender = document.getElementsByName("gender");
+
+            var height = document.getElementById("height").value;
+
+            var weight = document.getElementById("weight").value;
+
+            //quick age if statement check to display error message if values not within constraints 
+
+            if (age < 16 || age > 100) {
+
+              
+
+                document.getElementById('lblResult').innerHTML = "ERROR: Enter age between 16 and 100 Only Please";
+
+            }
+
+            //checking weight
+
+            else if (weight < 90 || weight > 400) {
+
+            //quick weight if statement check to display error message if values not within constraints 
+
+                document.getElementById('lblResult').innerHTML = "ERROR: Enter weight between 90 and 400 Only Please";
+
+            }
+
+            //checking height
+
+            else if (height < 36 || height > 84) {
+
+            //quick height if statement check to display error message if values not within constraints 
+
+                document.getElementById('lblResult').innerHTML = "ERROR: Enter height between 36 and 84 Only Please";
+
+            }
+
+            // gender is selection
+
+            else if (gender[0].checked == true) {
+
+                //if a guy is selected
+
+                bmr = 66 + (6.3 * weight) + (12.9 * height) - (6.8 * age);
+
+                //calculate the chocolate bar
+
+                var chocolateBar = bmr / 320;
+
+                //calculate the broccoli
+
+                var broccoli = bmr / 154;
+
+
+                document.getElementById('lblResult').innerHTML = bmr + "<br/> Need to eat  " + chocolateBar.toFixed(2) + " chocolate bars and " + broccoli.toFixed(2) + " broccoli to maintain weight";
+
+            }
+
+            else {
+
+                
+
+                bmr = 655 + (4.3 * weight) + (4.7 * height) - (4.7 * age);
+
+                
+
+                var chocolateBar = bmr / 320;
+
+              
+
+                var broccoli = bmr / 154;
+
+
+                document.getElementById('lblResult').innerHTML = bmr + "<br/> Need to eat  " + chocolateBar.toFixed(2) + " chocolate bar and " + broccoli.toFixed(2) + " broccoli to maintain weight";
+
+            }
+
+        }
+
+        
+
+        document.getElementsByTagName("button")[0].addEventListener("click", function () {
+
+            BMRCalc();
+
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>
